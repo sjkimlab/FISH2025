@@ -7,13 +7,16 @@ Author: Yu-Huan Wang
 
 Description: this script is for plotting bar graph of FISH data spot number
 per cell
+
+-------- please go to the directory that contains output folder --------
+          i.e.  'yourPath\FISH2025\DataSet\test_analyzed'
 ---------------------------------------------------------------------------
 %}
 
 clear, clc, close all
 
-% fishPath = ''; % change to your FISH output folder
-fishPath = 'C:\Users\yuhuanw2\Documents\MATLAB\Lab Data\2025\test\output\';
+% FISH output folder that stores analsis result
+fishPath = 'output\'; 
 
 % find which files to plot
 list = dir( [fishPath 'FISH*']);

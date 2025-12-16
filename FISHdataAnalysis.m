@@ -3,7 +3,7 @@
 Author: Yu-Huan Wang 
     (Kim Lab at UIUC) - yuhuanw2@illinois.edu
     Creation date: 8/9/2023
-    Last updated at 3/11/2025
+    Last updated at 12/16/2025
 
 Description: this script is for FISH data analysis, please run it section
 by section.
@@ -18,22 +18,22 @@ cellArea & cellLength & cellWid: properties of each cells (unit: um)
 
 ---------------------------------------------------------------------------
 ----------- please go to the directory that stores nd2 images -------------
+          i.e.  'yourPath\FISH2025\DataSet\test_analyzed\SK519'
 ---------------------------------------------------------------------------
 %}
 
+clear, clc, close all
+
+% set the output folder to store analsis result
+fishPath = '..\output\';
 
 %% 1. Combine uTrack & oufti output and save into files 
 
-clear, clc, close all
 
 % specify the strain name
-Date = input( ' Please input the Date of the experiment (like: 250310):  ', 's'); fprintf( '\n')
+Date = input( ' Please input the date of the experiment (like: 250310):  ', 's'); fprintf( '\n')
 strain = input( ' Please input the strain number (like: SK519):  ', 's'); fprintf( '\n')
 % Date = '250311';    strain = 'SK591';
-
-% set the output folder to store analsis result
-% fishPath = ''; % change to your folder
-fishPath = 'C:\Users\yuhuanw2\Documents\MATLAB\Lab Data\2025\test\output\';
 
 if ~exist( fishPath, 'dir'), mkdir( fishPath), end % create save folder
 
@@ -41,8 +41,8 @@ if ~exist( fishPath, 'dir'), mkdir( fishPath), end % create save folder
 uTrackFolder = dir( 'Cy3_uTrack*');
     
     % load uTrack output - movieInfo (containes spot coordinates)
-    load( [ uTrackFolder.name '\TrackingPackage\GaussianMixtureModels\detections_for_channel_1\Channel_1_detection_result'],...
-        'movieInfo')
+    load( [ uTrackFolder.folder '\' uTrackFolder.name '\TrackingPackage\GaussianMixtureModels\' ...
+        'detections_for_channel_1\Channel_1_detection_result'], 'movieInfo')
     
     tmp = split( uTrackFolder.name, '_');    % e.g. 'Cy3_uTrack'
     
